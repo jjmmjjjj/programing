@@ -1,0 +1,54 @@
+/* 기본 모바일 우선 */
+body, html {
+  margin:0;
+  padding:0;
+  font-family:sans-serif;
+}
+
+header {
+  height: 70vh; /* 모바일에서 화면 대부분 */
+  background-image: url('배경이미지.jpg');
+  background-size: cover;
+  background-position: center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:2rem; /* 모바일 기준 */
+  text-align:center;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+section {
+  padding: 60px 20px; /* 모바일 기준 */
+  max-width: 90%;
+  margin: auto;
+  opacity:0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+section.visible {
+  opacity:1;
+  transform: translateY(0);
+}
+
+form label { display:block; margin-top:15px; font-size:1rem; }
+form input, form select, form textarea {
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  font-size:1rem;
+}
+form button {
+  margin-top:20px;
+  padding:10px 20px;
+  font-size:1rem;
+  width:100%;
+}
+.site-name{
+  color : chartreuse;
+  font-weight : bold;
+  font-size : 3rem;
+}
+

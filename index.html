@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소개 + 설문 사이트</title>
+<style>
+  body, html { margin:0; padding:0; font-family: sans-serif; }
+  header {
+    height:100vh;
+    background-image: url('배경이미지.jpg');
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size: 3rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  }
+  section {
+    padding: 100px 20px;
+    max-width: 800px;
+    margin: auto;
+    opacity:0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+  }
+  section.visible {
+    opacity:1;
+    transform: translateY(0);
+  }
+  form label { display:block; margin-top:20px; }
+  form input, form select, form textarea { width:100%; padding:10px; margin-top:5px; }
+  form button { margin-top:20px; padding:10px 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 style="color: chartreuse;">프로그래밍 동아리</h1>
+</header>
+
+<section class="intro">
+  <img src="소개이미지.jpg" alt="소개 이미지" style="width:100%; margin-bottom:20px;">
+  <p>여기에 소개 문구를 넣으면 됩니다. 스크롤하면 천천히 나타납니다.</p>
+</section>
+
+<section class="survey">
+  <h2>인적 사항</h2>
+  <form action="https://formspree.io/f/xxxxx" method="POST">
+    <label>이름</label>
+    <input type="text" name="namer">
+
+    <label>학번</label>
+    <input type="text" name="number">
+    </select>
+
+    <label>전화번호</label>
+    <input type="text" name="phone">
+
+    <label>참여 목적</label>
+    <input type="text" name="purpose">
+
+    <button type="submit">제출</button>
+  </form>
+</section>
+
+<script>
+  // 스크롤 시 페이드 인
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
