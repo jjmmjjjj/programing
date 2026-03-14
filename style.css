@@ -1,10 +1,11 @@
 /* 기본 설정 */
 :root {
-    --primary-color: #007AFF;    /* 메인 포인트 색상 (애플 블루) */
-    --bg-color: #f5f5f7;         /* 전체 배경색 (연한 회색) */
-    --card-bg: #ffffff;          /* 피드 카드 배경색 */
-    --text-main: #1d1d1f;        /* 메인 글자색 */
-    --fade-duration: 0.8s;       /* 페이드 인 속도 (0.8초) */
+    --primary-color: #0A84FF;    /* 포인트 블루 (다크모드용 조금 더 밝은 블루) */
+    --bg-color: #000000;         /* 전체 배경색 (완전 검정) */
+    --card-bg: #1C1C1E;          /* 피드 카드 배경색 (진한 회색/검정) */
+    --text-main: #FFFFFF;        /* 메인 글자색 (흰색) */
+    --text-sub: #AEAEB2;         /* 보조 글자색 (연한 회색) */
+    --fade-duration: 0.8s;       /* 페이드 인 속도 */
 }
 
 * {
@@ -13,7 +14,12 @@
 }
 
 body {
+    /* 배경 사진을 넣고 싶다면 아래 주석을 해제하고 경로를 입력하세요 */
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/dark-bg.jpg'); */
     background-color: var(--bg-color);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-main);
     overflow-x: hidden;
 }
@@ -22,60 +28,83 @@ body {
 .hero {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                url('assets/images/background.jpg'); /* 제작한 배경 이미지 경로 */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('assets/images/background.jpg'); 
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
 }
-
-.hero-content h1 { font-size: 3rem; margin-bottom: 10px; }
 
 /* 피드 컨테이너 */
 .feed-container {
     padding: 20px;
-    max-width: 500px; /* 모바일 피드 느낌을 위해 너비 제한 */
+    max-width: 500px;
     margin: 0 auto;
 }
 
-/* 피드 아이템 (카드 디자인) */
+/* 피드 아이템 (다크 카드 디자인) */
 .feed-item {
     background: var(--card-bg);
     border-radius: 20px;
     margin-bottom: 30px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    /* 페이드 인 준비 상태 */
+    /* 다크모드에서는 그림자를 더 진하게 하거나 테두리를 살짝 줍니다 */
+    border: 1px solid #2C2C2E; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
     opacity: 0;
     transform: translateY(30px);
-    transition: all var(--fade-duration) ease-out;
+    transition: all var(--fade-duration) cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.feed-img {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* 정사각형 피드 유지 */
-    object-fit: cover;
-}
-
-.feed-text { padding: 20px; }
-.feed-text h3 { margin-bottom: 8px; font-size: 1.2rem; }
-
-/* 애니메이션 활성화 클래스 */
 .feed-item.active {
     opacity: 1;
     transform: translateY(0);
 }
 
+.feed-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    /* 사진이 너무 밝으면 글자와 안 어울릴 수 있으니 살짝 어둡게 처리(선택) */
+    filter: brightness(0.9);
+}
+
+.feed-text { padding: 24px; }
+.feed-text h3 { 
+    margin-bottom: 10px; 
+    font-size: 1.3rem; 
+    color: var(--text-main); /* 흰색 */
+}
+.feed-text p { 
+    color: var(--text-sub); /* 연한 회색으로 가독성 높임 */
+    line-height: 1.6;
+}
+
 /* 버튼 스타일 */
 button {
-    border: none; border-radius: 12px;
-    padding: 15px 25px; font-weight: 600; font-size: 1rem;
+    border: none; border-radius: 14px;
+    padding: 16px 25px; font-weight: 600; font-size: 1rem;
     cursor: pointer; transition: 0.3s;
 }
 
-.apply-btn { background: var(--primary-color); color: white; margin-top: 20px; }
-.secondary-btn { background: #eee; color: #333; width: 100%; margin-top: 15px; }
+.apply-btn { 
+    background: var(--primary-color); 
+    color: white; 
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(10, 132, 255, 0.3);
+}
+
+.secondary-btn { 
+    background: #3A3A3C; /* 버튼도 어두운 계열로 */
+    color: white; 
+    width: 100%; 
+    margin-top: 20px; 
+}
+
+.secondary-btn:active {
+    background: #48484A;
+}
