@@ -20,18 +20,18 @@ body {
 }
 
 /* 상단 대문 (Hero 섹션) */
-
 .hero {
     width: 100%;
     height: 100vh;
-    /* 1. 이미지를 배경으로 넣고 어둡게 처리 */
+    /* 1. 배경 설정: url('background.jpg') 확인! */
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('background.jpg') no-repeat;
+                url('background.jpg');
     
-    /* 2. 핵심 수정: fixed를 삭제하고 scroll로 변경 */
-    background-size: cover;       /* 화면에 꽉 채우기 */
-    background-position: center;  /* 이미지 정중앙 기준 */
-    background-attachment: scroll; /* 스크롤과 함께 사진도 자연스럽게 올라감 */
+    /* 2. 핵심: scroll로 설정하면 페이지와 함께 사진도 위로 올라갑니다 */
+    background-attachment: scroll !important; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     display: flex;
     flex-direction: column;
@@ -41,7 +41,6 @@ body {
     padding: 0 20px;
     color: white;
 }
-
 
 
 /* 글자에 그림자를 살짝 줘서 가독성 높이기 */
